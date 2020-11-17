@@ -144,5 +144,8 @@ class Image(models.Model):
         images = cls.objects.filter(location__location__icontains = location)
         return images
 
+    class Meta:
+        ordering = ["id"]
+
     def __str__(self):
         return self.name
