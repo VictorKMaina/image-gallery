@@ -40,7 +40,6 @@ class Location(models.Model):
         ordering = ["location"]
 
     def __str__(self):
-        print("LOCATION: ", self.location)
         return self.location
 
 class Categories(models.Model):
