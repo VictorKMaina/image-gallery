@@ -44,4 +44,4 @@ def location(request, location_id):
         raise Http404("Page does not exist.")
 
 def all_locations(request):
-    return render()
+    return render(request)
