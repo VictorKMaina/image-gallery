@@ -6,13 +6,19 @@ html {
 }
 
 .page-padding {
+    max-width: 1440px;
+    margin: auto;
     padding-left: 50px;
     padding-right: 50px;
 }
 
-input.form-control {
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar input.form-control {
     border: none;
-    min-width: 250px;
+    min-width: 500px;
     outline: none;
     background: #f2f2f2;
     border-radius: 20px 0px 0px 20px;
@@ -29,4 +35,54 @@ input.form-control {
 
 .nav-item {
     font-weight: 600;
+}
+
+.image {
+    margin: 0px;
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+}
+
+.grid-location {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #666666;
+    margin-top: 8px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 992px){
+    .page-padding{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .navbar input.form-control {
+        min-width: 300px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .navbar input.form-control {
+        border: none;
+        outline: none;
+        background: #f2f2f2;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+    #search-form button {
+        background: #1a7ea3;
+        border: none;
+        color: white;
+        padding-left: 15px;
+        padding-right: 15px;
+        height: 38px;
+        border-radius: 5px;
+        width: 100%;
+    }
 }
