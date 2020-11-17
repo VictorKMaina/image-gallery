@@ -25,13 +25,16 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">{{ image.name }}</h5>
-                        <div class="d-flex align-items-center">
-                            <img src="{% static 'images/pin.svg' %}" alt="" />
-                            <h6 class="m-0 ml-2 mr-3">{{ image.location }}</h6>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                        <a href="{% url 'location' location_id=image.location.id %}">
+                            <div class="d-flex align-items-center">
+
+                                <img src="{% static 'images/pin.svg' %}" alt="" />
+                                <h6 class="m-0 ml-2 mr-3">{{ image.location }}</h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </a>
                     </div>
                     <div class="modal-body">
                         <div class="modal-image d-flex justify-content-center">
