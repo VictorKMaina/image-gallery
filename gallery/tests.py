@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import *
+from django.db import transaction
 
 class LocationTest(TestCase):
     """
@@ -118,6 +119,25 @@ class CategoriesTest(TestCase):
         categories = Categories.objects.all()
 
         self.assertTrue(len(categories) == 0)
+
+    def test_search_images(self):
+        """
+        Test case to check if search_images returns list of Image objects
+        """
+        self.category.save_category()
+
+        location = Location(city = "Nairobi", country = "Kenya")
+        location.save_location()
+
+        new_image = Image(image = "path/to/image", name = "example image", description = "This is an example", location = location)
+        new_image.save_image()
+
+        new_image.add_category(self.category)
+
+        images = Categories.search_images("city")
+        print("\nIMAGES: ", images, "\n")
+
+        self.assertTrue(len(images) > 0)
 
 class ImageTest(TestCase):
     """

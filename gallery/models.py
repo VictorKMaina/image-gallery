@@ -67,6 +67,23 @@ class Categories(models.Model):
         """
         self.delete()
 
+    @classmethod
+    def search_images(cls, search_term):
+        """
+        Method that returns QuerySet of images that have a matching category name
+        """
+        categories = cls.objects.filter(category__icontains = search_term).all()
+
+        try:
+            images = []
+            for category in categories:
+                images_found = category.image_set.all()
+                for image in images_found:
+                    images.append(image)
+            return images
+        except:
+            return "No images found"
+
     def __str__(self):
         return self.category
 
