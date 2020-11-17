@@ -9,13 +9,16 @@ class Location(models.Model):
     """
     city = models.CharField(max_length = 150)
     country = models.CharField(max_length = 150)
-    location = models.CharField(max_length = 200)
+    location = models.CharField(max_length = 200, editable = False)
+
+    def save(self, *args, **kwargs):
+        self.location = f"{self.city}, {self.country}"
+        super(Location, self).save(*args, **kwargs)
 
     def save_location(self):
         """
         Saves location to database
         """
-        self.location = f"{self.city}, {self.country}"
         self.save()
 
     def update_location(self, city, country):
@@ -34,6 +37,7 @@ class Location(models.Model):
         self.delete()
 
     def __str__(self):
+        print("LOCATION: ", self.location)
         return self.location
 
 class Categories(models.Model):
