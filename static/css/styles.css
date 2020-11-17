@@ -16,6 +16,16 @@ html {
     margin-bottom: 30px;
 }
 
+#image-link {
+    border: none;
+    outline: none;
+    background: #f2f2f2;
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 10px;
+    height: calc(1.5em + .75rem + 2px);
+    margin-right: 5px;
+}
+
 .navbar input.form-control {
     border: none;
     min-width: 500px;
@@ -23,7 +33,7 @@ html {
     background: #f2f2f2;
     border-radius: 20px 0px 0px 20px;
 }
-#search-form button {
+#search-form button, .copy-link button {
     background: #1a7ea3;
     border: none;
     color: white;
@@ -122,6 +132,11 @@ html {
     font-weight: 600;
     margin-left: 5px;
     margin-right: 5px;
+}
+.alert#copied {
+    display: none;
+    margin-bottom: 15px;
+    padding: 5px 10px;
 }
 
 /* Media Queries */
