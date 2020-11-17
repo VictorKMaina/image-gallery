@@ -2,7 +2,7 @@
 
 ## An online photo gallery
 
-### [Heroku Link](https://Photos-blog.herokuapp.com/Photos-blog-app) | [LucidCharts ERD](https://lucid.app/invitations/accept/29e27027-b8e7-4432-97f0-34935dbc4126) | [Figma Link](https://www.figma.com/file/sEPs8iUAxN4tVepLc2kwAA/Photos-Django-IP?node-id=0%3A1)
+### [Heroku Link](https://moringa-photos-app.herokuapp.com/) | [LucidCharts ERD](https://lucid.app/invitations/accept/29e27027-b8e7-4432-97f0-34935dbc4126) | [Figma Link](https://www.figma.com/file/sEPs8iUAxN4tVepLc2kwAA/Photos-Django-IP?node-id=0%3A1)
 
 ---
 ## Introduction
