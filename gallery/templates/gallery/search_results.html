@@ -1,7 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <div class="container-fluid page-padding">
     <h3 class="font-weight-bold mb-4">{{ message }}</h3>
@@ -43,14 +40,17 @@
                             Link has been copied!
                         </div>
                         <div class="copy-link d-flex">
-                            <input type="text" value='{{ image.image.url }}' id="image-link" class="flex-fill" readonly>
+                            <input type="text" value="{{ image.image.url }}" id="image-link" class="flex-fill"
+                                readonly />
                             <button type="button" id="copy-link">Copy Link</button>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-start">
                         <div class="d-flex justify-content-start" style="margin-left: -5px; margin-right: -5px">
                             {% for category in image.categories.all %}
-                            <div class="category">{{category}}</div>
+                            <a href="/search/?category={{category.category}}">
+                                <div class="category">{{category}}</div>
+                            </a>
                             {% endfor %}
                         </div>
                     </div>

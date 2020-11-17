@@ -5,6 +5,10 @@ html {
     font-family: "Source Sans Pro";
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .page-padding {
     max-width: 1440px;
     margin: auto;
@@ -133,7 +137,9 @@ html {
     font-weight: 600;
     margin-left: 5px;
     margin-right: 5px;
+    cursor: pointer;
 }
+
 .alert#copied {
     display: none;
     margin-bottom: 15px;

@@ -1,17 +1,15 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container-fluid page-padding">
     {% if message %}
-    <h3 class="font-weight-bold mb-4">{{ message }}<a href="/admin"> Log In </a>to upload new images.</h3>
+    <h3 class="font-weight-bold mb-4">
+        {{ message }}<a href="/admin"> Log In </a>to upload new images.
+    </h3>
     {% endif %}
     <div class="row">
         {% for image in images %}
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid">
-            <div
-                class="grid-image"
-                data-toggle="modal"
-                data-target="#id{{image.id}}"
-                style="background-image: url('{{ image.image.url }}')"
-            ></div>
+            <div class="grid-image" data-toggle="modal" data-target="#id{{image.id}}"
+                style="background-image: url('{{ image.image.url }}')"></div>
             <a href="{% url 'location' location_id=image.location.id %}">
                 <div class="grid-location">
                     <img src="{% static 'images/pin.svg' %}" alt="" />
@@ -21,14 +19,8 @@
         </div>
 
         <!-- Modal -->
-        <div
-            class="modal fade bd-example-modal-xl"
-            id="id{{image.id}}"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-        >
+        <div class="modal fade bd-example-modal-xl" id="id{{image.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -36,12 +28,7 @@
                         <div class="d-flex align-items-center">
                             <img src="{% static 'images/pin.svg' %}" alt="" />
                             <h6 class="m-0 ml-2 mr-3">{{ image.location }}</h6>
-                            <button
-                                type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
-                            >
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -58,23 +45,17 @@
                             Link has been copied!
                         </div>
                         <div class="copy-link d-flex">
-                            <input
-                                type="text"
-                                value="{{ image.image.url }}"
-                                id="image-link"
-                                class="flex-fill"
-                                readonly
-                            />
+                            <input type="text" value="{{ image.image.url }}" id="image-link" class="flex-fill"
+                                readonly />
                             <button type="button" id="copy-link">Copy Link</button>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-start">
-                        <div
-                            class="d-flex justify-content-start"
-                            style="margin-left: -5px; margin-right: -5px"
-                        >
+                        <div class="d-flex justify-content-start" style="margin-left: -5px; margin-right: -5px">
                             {% for category in image.categories.all %}
-                            <div class="category">{{category}}</div>
+                            <a href="/search/?category={{category.category}}">
+                                <div class="category">{{category}}</div>
+                            </a>
                             {% endfor %}
                         </div>
                     </div>
