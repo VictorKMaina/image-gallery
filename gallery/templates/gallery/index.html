@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container-fluid page-padding">
+    {% if message %}
+    <h3 class="font-weight-bold mb-4">{{ message }}<a href="/admin"> Log In </a>to upload new images.</h3>
+    {% endif %}
     <div class="row">
         {% for image in images %}
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 grid">

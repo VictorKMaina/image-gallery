@@ -9,7 +9,9 @@ def index(request):
         ctx = {"images":images}
         return render(request, "gallery/index.html", ctx)
     else:
-        message = {""}
+        message = "No images uploaded."
+        ctx = {"images":images, "message":message}
+        return render(request, "gallery/index.html", ctx)
 
 def search_results(request):
     if "category" in request.GET and request.GET["category"]:
@@ -40,3 +42,6 @@ def location(request, location_id):
             return render(request, "gallery/search_results.html", ctx)
     except:
         raise Http404("Page does not exist.")
+
+def all_locations(request):
+    return render()
