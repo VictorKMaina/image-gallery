@@ -40,13 +40,32 @@ class Location(models.Model):
     def __str__(self):
         return self.location(self)
 
-class Category(models.Model):
+class Categories(models.Model):
     """
     Class to define category instances
     Args:
         models.Model: Inherits from models.Model class
     """
     category = models.CharField(max_length = 50)
+
+    def save_category(self):
+        """
+        Saves category to database
+        """
+        self.save()
+
+    def update_category(self, category):
+        """
+        Method to change category values
+        """
+        self.category = category
+        self.save_category()
+
+    def delete_category(self):
+        """
+        Method to remove category from database
+        """
+        self.delete()
 
     def __str__(self):
         return self.category
@@ -61,7 +80,7 @@ class Image(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length = 280)
     location = models.ForeignKey(Location, on_delete = models.PROTECT)
-    category = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Categories)
 
     def __str__(self):
         return self.name
