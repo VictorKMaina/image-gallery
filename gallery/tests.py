@@ -27,12 +27,6 @@ class LocationTest(TestCase):
         self.place.save()
         self.assertTrue(isinstance(self.place, Location))
 
-    def test_location_method(self):
-        """
-        Test case for checking if method combines city and country into locaiton
-        """
-        self.assertEqual(self.place.location, "Nairobi, Kenya")
-
     def test_save_location(self):
         """
         Test case for checking if save_location method adds location to database
@@ -41,6 +35,14 @@ class LocationTest(TestCase):
         locations = Location.objects.all()
 
         self.assertTrue(len(locations) > 0)
+
+    def test_location_property(self):
+        """
+        Test case to check if city and country have been combines to create location property
+        """
+        self.place.save_location()
+
+        self.assertEqual(self.place.location, "Nairobi, Kenya")
 
     def test_update_location(self):
         """
@@ -128,10 +130,13 @@ class ImageTest(TestCase):
         """
         Runs before each test case
         """
-        self.location = Location.objects.create(city = "Nairobi", country = "Kenya")
-        self.category = Categories.objects.create(category = "cityscape")
+        self.place = Location(city = "Nairobi", country = "Kenya")
+        self.place.save_location()
 
-        self.new_image = Image(image = "/static/images/city.png", name = "Nairobi City", description = "A wonderful portrait of the city of Nairobi", location = self.location)
+        self.category = Categories(category = "cityscape")
+        self.category.save_category()
+
+        self.new_image = Image(image = "/static/images/city.png", name = "Nairobi City", description = "A wonderful portrait of the city of Nairobi", location = self.place)
 
     def tearDown(self):
         """
@@ -161,9 +166,11 @@ class ImageTest(TestCase):
         Test case for checking if update_image method changes value image.image
         """
         self.new_image.save_image()
-        self.new_image.update_image("/static/images/lion.jpg")
+        self.new_image.update_image("image", "/static/images/lion.jpg")
+        self.new_image.update_image("name", "Lion")
 
         self.assertEqual(self.new_image.image, "/static/images/lion.jpg")
+        self.assertEqual(self.new_image.name, "Lion")
 
     def test_delete_image(self):
         """
@@ -183,4 +190,22 @@ class ImageTest(TestCase):
         self.new_image.save_image()
         self.new_image.add_category(self.category)
 
-        self.assertEqual(len(self.new_image.categories) > 0)
+        self.assertTrue(len(self.new_image.categories.all()) > 0)
+    
+    def test_get_image_by_id(self):
+        """
+        Test case to check if class method get_image_by_id returns Image object
+        """
+        self.new_image.save_image()
+        image = Image.get_image_by_id(self.new_image.id)
+
+        self.assertEqual(image, self.new_image) 
+    
+    def test_filter_by_location(self):
+        """
+        Test case to check if class method filter_by_location returns list of Image objects
+        """
+        self.new_image.save_image()
+        images = Image.filter_by_location("Nairobi")
+
+        self.assertTrue(len(images) > 0)

@@ -9,18 +9,13 @@ class Location(models.Model):
     """
     city = models.CharField(max_length = 150)
     country = models.CharField(max_length = 150)
-    
-    @property
-    def location(self):
-        """
-        Combines city and country into new location property
-        """
-        return f"{self.city}, {self.country}"
+    location = models.CharField(max_length = 200)
 
     def save_location(self):
         """
         Saves location to database
         """
+        self.location = f"{self.city}, {self.country}"
         self.save()
 
     def update_location(self, city, country):
@@ -29,6 +24,7 @@ class Location(models.Model):
         """
         self.city = city
         self.country = country
+        self.location = f"{city}, {country}"
         self.save_location()
 
     def delete_location(self):
@@ -38,7 +34,7 @@ class Location(models.Model):
         self.delete()
 
     def __str__(self):
-        return self.location(self)
+        return self.location
 
 class Categories(models.Model):
     """
@@ -79,8 +75,53 @@ class Image(models.Model):
     image = CloudinaryField("image")
     name = models.CharField(max_length=50)
     description = models.CharField(max_length = 280)
-    location = models.ForeignKey(Location, on_delete = models.PROTECT)
+    location = models.ForeignKey(Location, on_delete = models.CASCADE)
     categories = models.ManyToManyField(Categories)
+
+    @property
+    def location_name(self):
+        return self.location.location
+
+    def save_image(self):
+        """
+        Saves image to database
+        """
+        self.save()
+
+    def update_image(self, property, value):
+        """
+        Updates image properties
+        """
+        if property == "image":
+            self.image = value
+        if property == "name":
+            self.name = value
+        if property == "decription":
+            self.description = value
+        if property == "location":
+            self.location = value
+
+    def delete_image(self):
+        """
+        Removes image from database
+        """
+        self.delete()
+
+    def add_category(self, category):
+        """
+        Adds new category to categories list
+        """
+        self.categories.add(category)
+        
+    @classmethod
+    def get_image_by_id(cls, id):
+        image = cls.objects.get(id = id)
+        return image
+
+    @classmethod
+    def filter_by_location(cls, location):
+        images = cls.objects.filter(location__location__icontains = location)
+        return images
 
     def __str__(self):
         return self.name
