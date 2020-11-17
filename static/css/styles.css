@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;900&display=swap");
+
+body,
+html {
+    font-family: "Source Sans Pro";
+}
+
+.page-padding {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+input.form-control {
+    border: none;
+    min-width: 250px;
+    outline: none;
+    background: #f2f2f2;
+    border-radius: 20px 0px 0px 20px;
+}
+#search-form button {
+    background: #1a7ea3;
+    border: none;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 38px;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.nav-item {
+    font-weight: 600;
+}
