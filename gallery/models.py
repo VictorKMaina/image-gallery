@@ -36,6 +36,9 @@ class Location(models.Model):
         """
         self.delete()
 
+    class Meta:
+        ordering = ["location"]
+
     def __str__(self):
         print("LOCATION: ", self.location)
         return self.location
