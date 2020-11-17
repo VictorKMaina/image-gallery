@@ -145,7 +145,7 @@ class Image(models.Model):
         return images
 
     class Meta:
-        ordering = ["id"]
+        ordering = ["-id"]
 
     def __str__(self):
         return self.name
